@@ -1,0 +1,82 @@
+.overlay
+	position: fixed
+	right: 0
+	bottom: 0
+	background-size: cover
+	height: 100%
+	top: 0
+	left: 0
+	background: rgba(0,0,0,.5)
+	visibility: hidden
+	z-index: 100
+	overflow-y: hidden
+	opacity: 0
+	transition: visibility .7s
+	.burger
+		span 
+			background: rgba(255, 255, 255, 0)
+		&::before,&::after
+			background: white
+		span 
+			&::before
+				transform: translateX(4px) translateY(-3px) rotate(45deg)
+			&::after
+				transform: translateX(4px) translateY(2px) rotate(-45deg)
+	.body_overlay
+		transform: translateX(-100%)
+		transition: transform .7s
+		height: 100%
+		overflow: auto
+		width: 250px
+		background-color: #f53a39
+		z-index: 200
+		position: fixed
+		left: 0
+		top: 0
+		overflow-x: hidden
+		header
+			width: 100%
+			height: 65px
+			background-color: #f53a39
+			text-align: left
+			padding-left: 10px
+			display: flex
+			align-items: center
+			img
+				height: 40px
+		ul
+			border-top: 1px solid white
+			&:last-of-type
+				padding-bottom: 0
+			li
+				display: flex
+				a
+					padding-left: 25px
+					border-bottom: 1px solid white
+					padding: 1em 5%
+					display: inline-block
+					width: 100%
+				img
+					display: inline-block
+		a
+			display: block
+			padding: 1em 5%
+			position: relative
+			color: #fff
+			font-size: 1em
+			text-decoration: none
+		.krest
+			position: absolute
+			right: 0px
+			top: 10px
+			padding: 5px
+			display: block
+		.bottom
+			text-align: center
+			padding: 3px 0px
+	.menu_is_open
+		transform: translateX(0%)
+		visibility: visible
+.menu_is_open
+	visibility: visible
+	opacity: 1
