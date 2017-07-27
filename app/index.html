@@ -119,16 +119,16 @@
 							<div><img src="../img/dish.jpg" alt=""></div>
 							<div class="caption">
 								<p>{{name}}</p>
-								<p>Тигровые креветки, лук, перец болгарский, морковь, соевые ростки, цуккини</p>
-								<p><span>300 ₽</span><em>/ 300 гр</em></p>
+								<p>{{ingredient}}</p>
+								<p><span>{{price}} ₽</span><em>/ {{gramm}} гр</em></p>
 								<div class="button_active">
 									<button data-id={{_id}} class="{{_id}}">Добавить в корзину</button>
-									<div class="quanti">
-										<img src="../img/minus.png" class="decrement" data-id={{_id}} alt=""/>
+									<div class="quanti {{_id}}">
+										<img src="../img/minus.png" data-context="dishes" class="decrement" data-context="dishes" data-flow="list" data-id={{_id}} alt=""/>
 										<div class="quantity">
 											<span data-id={{_id}} class="{{_id}}"></span>
 										</div>
-										<img src="../img/plus.png" class="increment" data-id={{_id}} alt=""/>
+										<img src="../img/plus.png" data-context="dishes" class="increment" data-flow="list" data-id={{_id}} alt=""/>
 									</div>
 								</div>	
 							</div>
@@ -190,11 +190,13 @@
 							<ul>
 								<li class="name">{{name}}</li>
 								<li class="gramm">{{gramm}}</li>
-								<li class="{{_id}}">Количество
-								<em class="decrement" data-id={{_id}}> minus </em>
-									<div>
-										<span>{{quantity}}</span>
+								<li class="{{_id}} quanti"><em>Количество</em>
+								<!-- <em class="decrement" data-id={{_id}}> minus </em> -->
+								<img src="../img/minus.png" class="decrement" data-id={{_id}} data-context="list" data-flow="dishes" alt=""/>
+									<div class="quantity">
+										<span class="{{_id}}">{{quantity}}</span>
 									</div>
+								<img src="../img/plus.png" data-context="list" data-flow="dishes" class="increment" data-id={{_id}} alt=""/>
 								</li>
 								<li class="price">{{price}}</li>
 								<li data-id="{{_id}}" class="delete">Удалить</li>

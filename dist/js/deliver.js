@@ -115,6 +115,7 @@ $(document).ready(function(){
     // ================PRODUCT AND DATA=================
     var product = [];
     var total = 0;
+    var dishes = $("#dishes");
 
     function basket(dishes){
         $(".button_active > button").on("click", function(obj){
@@ -130,12 +131,7 @@ $(document).ready(function(){
                         return
                     }else{
                          product.push(e)
-                         loadLIST(product)
-
-                         $("#list .item ul li .decrement").on("click",function(){
-                                decrimentList(this)
-                                console.log("heloo")
-                            })
+                         loadLIST(product)// 4 повесил обработчик
 
                          $(".basket").addClass("visible");
                          $(".order").text(product.length);
@@ -172,19 +168,30 @@ $(document).ready(function(){
             }
     }
 
-    function takeQuanity(arr){
+    function takeQuanity(arr,obj){
         $(arr).each(function(i,e){
             $(e).attr('class') == 'decrement' 
             ? 
-            $(e).on('click', function(){decriment(this)})
+            $(e).on('click', function(){decrement(this)})
             :
             $(e).on('click', function(){increment(this)})
 
         })
       }
 
-    function decriment(obj){
+    function turnOff(arr){
+        arr.each(function(i,e){
+            console.log(e)
+            $(e).off("click")
+        })
+    }
+
+    function decrement(obj){
         var id = $(obj).attr('data-id');
+        var context = $(obj).attr("data-context");
+        var flow = $(obj).attr("data-flow");
+        var imgs = $(obj).parent().find("img")
+        // console.log($(obj).parent().find("img"))
             $(product).each(function(i,e){
                 if(e._id == id){
                     var index = product.indexOf(e)
@@ -192,22 +199,34 @@ $(document).ready(function(){
                         total = total - e.price
                         e.quantity--
 
-                        $("#list"+" ."+id+" span").text(e.quantity) // меняем значение в листк заказа 
+                        $(obj).parent().find(".quantity > span").text(e.quantity)
+                        $("#"+flow+" ."+id+" span").text(e.quantity)
 
-                        $($(obj).next().children().eq(0)).text(e.quantity) //$(obj).find(".quantity").next()
+                        // $("#"+flow+" .quantity > span").text(e.quantity) // меням в листе заказов значение
+                        // $("#"+context+" .quantity > span").text(e.quantity) // меняем в карточке блюда
 
                         $('.total').text(total)
                         if(e.quantity == 0){
 
-                            $(obj).next().next().off("click") //  $(obj).find(".increment")
-                           
-
+                            turnOff(imgs)
+                            if(context == "list"){
+                                var arr = $("#dishes img[data-id="+id+"]")
+                                turnOff(arr)
+                            }
+                        
                             product.splice(index,1)
-                            loadLIST(product)
+                            loadLIST(product) // 3 повесил обработчик 
                             $(".order").text(product.length);
-
-                            $(obj).parent().prev().removeClass("hidden")
-                            $(obj).parent().removeClass("visible")
+                            switch(context){
+                                case "dishes":
+                                    $(obj).parent().parent().find("button").removeClass('hidden')
+                                    $(obj).parent().removeClass("visible")
+                                break;
+                                case "list":
+                                    $("#"+flow+" .button_active"+" ."+id).removeClass("hidden")
+                                    $("#"+flow+" .button_active"+" ."+id).next().removeClass("visible")
+                                break
+                            }
                         }
                     }else{
                         return
@@ -216,37 +235,6 @@ $(document).ready(function(){
             })
         }
 
-    function decrimentList(obj){
-        var id = $(obj).attr('data-id');
-            $(product).each(function(i,e){
-                if(e._id == id){
-                     var index = product.indexOf(e)
-                     if(e.quantity > 0){
-
-                         total = total - e.price
-                         e.quantity--
-                         $(obj).next().text(e.quantity)
-                         $('.total').text(total)
-
-                         if(e.quantity == 0){
-
-                            $("#dishes .increment").off("click")
-                            $("#dishes .decrement").off("click")
-
-                            product.splice(index,1)
-                            loadLIST(product)
-
-                            $(".order").text(product.length);
-                            $("#dishes "+"."+id+"").removeClass("hidden").next().removeClass('visible')
-                        }
-                    }
-                }
-            })
-    }
-
-    // $("#list .item ul li .decriment").on("click",function(){
-    //     decrimentList()
-    // })
 
     function deleteFromList(){
         $(".delete").on("click", function(){
@@ -255,7 +243,7 @@ $(document).ready(function(){
                 if(e._id == id){
                     var index = product.indexOf(e)
                     product.splice(index,1)
-                    loadLIST(product)
+                    loadLIST(product) // раз повесил обработчик
                     $("#dishes "+"."+id+"").removeClass("hidden").next().removeClass('visible')
                     $(".order").text(product.length);
                     $(".total").text(total = total - (e.price * e.quantity))
@@ -263,18 +251,44 @@ $(document).ready(function(){
                 }
             })
         })
+        $("#list .item ul li .decrement").on("click",function(){
+            // decrimentList(this)
+            decrement(this)
+        })
+         $("#list .item ul li .increment").on("click",function(){
+            // decrimentList(this)
+            increment(this)
+
+        })
+        // $("#list .item ul li .increment").on("click",function(){
+        //     decrimentList(this)
+        // })
     }
 
 
+
+
     function increment(obj){
-         var id = $(obj).attr('data-id');
+        var id = $(obj).attr('data-id');
+        var context = $(obj).attr("data-context");
+        var flow = $(obj).attr("data-flow");
+        // var imgs = $("#dishes").parent().find("img");
+
+        // console.log(id, "id")
+        // console.log(context, "context")
+        // console.log(flow, "flow")
+        // console.log(imgs, "img")
+
             $(product).each(function(i,e){
                 if(e._id == id){
                     total = total + e.price
-                    console.log("increment")
                     e.quantity++
-                    $($(obj).prev().children().eq(0)).text(e.quantity)
-                    $("#list"+" ."+id+" span").text(e.quantity)  
+                    // $($(obj).prev().children().eq(0)).text(e.quantity)
+                    // $("#list"+" ."+id+" span").text(e.quantity)
+                      // $("#"+flow+" .quantity > span").text(e.quantity) // меням в листе заказов значение
+                      // $("#"+context+" .quantity > span").text(e.quantity)
+                       $(obj).parent().find(".quantity > span").text(e.quantity)
+                       $("#"+flow+" ."+id+" span").text(e.quantity)
                 }
                     $('.total').text(total)
             })
@@ -329,7 +343,7 @@ $(document).ready(function(){
         $("#dishes").append(template(dishes))
         basket(data)
     }
-
+ 
     function loadLIST(data){
         var list = {}
             list.list = data
@@ -346,4 +360,32 @@ $(document).ready(function(){
 связать обработчики количества товара для объетка list 
 сейчас завязан на basket функции чей контекст функции dishes блюда
 каждый раз когда нажимаешь на кнопку добавить в корзину устанавливаються обработчики на выбор количетва товара
+определить последовательность установки обработчиков на кнопках уколичества
+1) Загрузились блюда
+    1.1) Установили обработчик на кнопуку в карточке блюда при нажатии пунтк 2
+2) Навешали обработчик на количество товара в нутри функции загрузки блюд
+    2.1) При нажатии загружаем товары в корзину
+    2.2) В функции декримента при условии что количесво равно 0 мы отключаем обработчики 
+        на кнопках кол-во товара так как обработчик устанавливаеться когда нажимешь на кнопку 1 пункт
+
+как связать состояние блюда а именное его количество 
+дать ссылку на 2 объекта в глобальной области
+сделать онидаковую структуру 
+написать одну функции снятия обработчиков 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 */
