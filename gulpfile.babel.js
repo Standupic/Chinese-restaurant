@@ -27,10 +27,10 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('script',function(){
-  	browserify("dist/js/deliver.js")
+  	browserify("dist/js/common.js")
     .transform('babelify', {presets: ["es2015", "react", "stage-0"]})
     .bundle()
-    .pipe(source("deliver.min.js"))
+    .pipe(source("common.min.js"))
     .pipe(bufferr())
 	.pipe(sourcemaps.init({loadMaps: true}))
 	.pipe(uglify({

@@ -119,33 +119,37 @@ require("../js/owl.carousel.min");
       };
     };
     
+
+    $("input[type='checkbox']").on("click", function(){
+        $("input[type='checkbox']").each(function(i,e){
+            $(e).prev().css("background","white");
+            $(this).prop("checked",false)
+        })
+            $(this).prev().css("background","yellow");
+            $(this).prop("checked",true)
+    })
     
     $("#form").submit(function(e){
         e.preventDefault()
         var flag = false;
-        var form_data = $(this).serialize();
+        var data = $(this).serialize();
         $(".error").remove();
         $(":input[required]").each(function(){
             if($(this).val() === ""){
-                $(this).after("<div class='error'>Заполните поле</div>")
+                $(this).next().after("<div class='error'>Заполните поле</div>")
                 flag = true;
             }else{
 
             }
         })
         if(flag) {return false;} else {
-            $("input[type='checkbox']").each(function(){
-                if($(this).prop("checked")){
-                     console.log($(this).attr("id"))
-                }
-            })
                $.ajax({
                 type: "POST", //Метод отправки
                 url: "send.php", //путь до php фаила отправителя
-                data: form_data,
+                data: data,
                 success: function() {
                        //код в этом блоке выполняется при успешной отправке сообщения
-                       alert("Ваше сообщение отпрвлено!");
+                       alert("Ваше сообщение отправлено!");
                 }
             });
         }
@@ -159,12 +163,19 @@ require("../js/owl.carousel.min");
      })
        var MyPlacemark = new ymaps.Placemark([55.6827,37.8654],{},{
         iconLayout: 'default#image',
-        iconImageHref: '../china/img/point.svg'
+        iconImageHref: '../img/point.svg'
         })
         map.geoObjects.add(MyPlacemark);
         map.behaviors.disable('scrollZoom');
         map.behaviors.disable('drag');
     }
-   
+
+   $(".go_to").on('click', function(e){
+        e.preventDefault();
+        var href = $(this).attr('data-go');
+        $('html, body').animate({ scrollTop: $(href).offset().top }, 500);
+        return false
+    });
+
 });
 

@@ -15,8 +15,20 @@ $(document).ready(function(){
         burger = $(".mobile_menu > .burger"),
         burger_sidebar = $(".body_overlay .krest .burger"),
     	sidemenu = $(".sidemenu"),
-        current = "";
-
+        product = JSON.parse(sessionStorage.getItem("product")) || [],
+        total = JSON.parse(sessionStorage.getItem("total")) ||  0,
+        current = "",
+        totalDOM = $('.total'),
+        orderDOM = $(".order"),
+        orderMobileDOM = $(".mobile .order"),
+        basketDOM = $(".basket"),
+        quantityDishDOM = $("#dishes .quantity > span"),
+        wraplistDOM = $(".wrap_list"),
+        showDOM = $(".show"),
+        bodyHtmlDOM = $('body, html');
+        // buttonsDOM = document.querySelectorAll("#dishes button")
+        // console.log(buttonsDOM)
+        // deleteDOM = $(".delete");
 
 	burger.on("click",function(){
         $(window).off("scroll")
@@ -58,12 +70,20 @@ $(document).ready(function(){
     function footerFixed(){
         var footer = document.querySelector(".footer");
         var point = (window.scrollY + window.innerHeight);
-        // console.log(point)
-        // console.log(coordElem(footer))
-        if(point > coordElem(footer) && $(".basket").hasClass('visible')){
-            $(".basket").css("position","static")
+
+        if(point > coordElem(footer) && basketDOM.hasClass('visible')){
+            basketDOM.css("position","static")
+            basketDOM.css("transform","translateY(0px)")
+            showDOM.css('display','none')
+
         }else{
-            $(".basket").css("position","fixed")
+            basketDOM.css("position","fixed")
+            if(wraplistDOM.height() < 300){
+                basketDOM.css("transform","translateY("+product.length*50+"px)") 
+             }else{
+                basketDOM.css("transform","translateY(300px)") 
+             }
+            showDOM.css('display','')
         }
     }
 
@@ -83,17 +103,29 @@ $(document).ready(function(){
         return {x:d.body.scrollLeft, y: d.body.scrollTop}   
     }
 
-   function showList(){
-    $(".show").on('click', function(e){
-        e.preventDefault()
-        $(this).text("скрыть")
-        $(".basket").toggleClass("show_list")
-    })
-   }
 
-   showList()
+
+    function resizeWindow(){
+       var deleteDOM = $(".delete");
+       if($(window).width() < 480){
+          deleteDOM.html("&times;")
+          orderMobileDOM.text(product.length)
+       }else{
+          deleteDOM.text("удалить")
+       }
+       $(window).resize(function(){
+            if($(window).width() < 480){
+                deleteDOM.html("&times;")
+                orderMobileDOM.text(product.length)
+            }else{
+                deleteDOM.text("удалить")
+            }
+         }) 
+    }  
 
     $(window).on("scroll", debounce(fixedMenu))
+
+    
 
     function debounce(func, wait = 10, immediate = true) {
       var timeout;
@@ -113,15 +145,29 @@ $(document).ready(function(){
     // ================PAGE=================
 
     // ================PRODUCT AND DATA=================
-    var product = [];
-    var total = 0;
-    var dishes = $("#dishes");
+
+    // var product = JSON.parse(SessionStorage.getItem("product")) || []
+
+
+    // var total = JSON.parse(SessionStorage.getItem("total")) ||  0;
+    // var current = "";
+    // var totalDOM = $('.total');
+    // var orderDOM = $(".order");
+    // var basketDOM = $(".basket");
+    // var quantityDishDOM = $("#dishes .quantity > span");
+    // var wraplistDOM = $(".wrap_list");
+
+
+    if(product.length){
+        basketDOM.addClass("visible");
+        loadLIST(product)
+    }
 
     function basket(dishes){
         $(".button_active > button").on("click", function(obj){
             var id = $(this).attr("data-id")
             var imgs = $(this).next().children("img");
-            var quantity = $(this).next().children(".quantity").find('span');
+            var quantity = $(this).parent().find(".quantity span");
             $(this).addClass('hidden')
             $(this).next().addClass("visible")
             $(dishes).each(function(i,e){
@@ -131,14 +177,18 @@ $(document).ready(function(){
                         return
                     }else{
                          product.push(e)
-                         loadLIST(product)// 4 повесил обработчик
-
-                         $(".basket").addClass("visible");
-                         $(".order").text(product.length);
+                         loadLIST(product)
+                         basketDOM.addClass("visible");
+                         orderDOM.text(product.length);
                          quantity.text(e['quantity'])
-                         $(".total").text(total = total + e.price)
-
-
+                         totalDOM.text(total = total + e.price)
+                         sessionStorage.setItem("product", JSON.stringify(product))
+                         sessionStorage.setItem("total", JSON.stringify(total))
+                         if(wraplistDOM.height() < 300){
+                            basketDOM.css("transform","translateY("+product.length*50+"px)") 
+                         }else{
+                            basketDOM.css("transform","translateY(300px)") 
+                         }
                     }
                    
                 }
@@ -147,6 +197,27 @@ $(document).ready(function(){
         })
        
     }
+
+    function showList(){
+        $(".show").on('click', function(e){
+            if(product.length > 6){
+                bodyHtmlDOM.addClass("not_scroll")
+            }
+            if(product.length < 6){
+                bodyHtmlDOM.removeClass("not_scroll").css("overflow-x","hidden")
+            }
+            if(basketDOM.hasClass("show_list")){
+                $(this).text("показать")
+                 bodyHtmlDOM.removeClass("not_scroll").css("overflow-x","hidden")
+            }else{ 
+                $(this).text("скрыть")
+            }
+            e.preventDefault()
+            basketDOM.toggleClass("show_list")
+        })
+    }
+
+    showList()
 
     function clearChildren(flag){
         if(flag){
@@ -168,7 +239,7 @@ $(document).ready(function(){
             }
     }
 
-    function takeQuanity(arr,obj){
+    function takeQuanity(arr){
         $(arr).each(function(i,e){
             $(e).attr('class') == 'decrement' 
             ? 
@@ -181,9 +252,18 @@ $(document).ready(function(){
 
     function turnOff(arr){
         arr.each(function(i,e){
-            console.log(e)
             $(e).off("click")
         })
+    }
+
+    function buttonTurnOff(selector,id){
+        $("#"+selector+" .button_active > button[data-id="+id+"]").removeClass("hidden")
+        $("#"+selector+" .button_active > button[data-id="+id+"]").next().removeClass("visible")
+    }
+
+    function buttonTurnOn(selector,id){
+        $("#"+selector+" .button_active > button[data-id="+id+"]").addClass("hidden")
+        $("#"+selector+" .button_active > button[data-id="+id+"]").next().addClass("visible")
     }
 
     function decrement(obj){
@@ -191,40 +271,47 @@ $(document).ready(function(){
         var context = $(obj).attr("data-context");
         var flow = $(obj).attr("data-flow");
         var imgs = $(obj).parent().find("img")
-        // console.log($(obj).parent().find("img"))
+           // product = JSON.parse(SessionStorage.getItem("product"));
             $(product).each(function(i,e){
                 if(e._id == id){
                     var index = product.indexOf(e)
                     if(e.quantity > 0){
                         total = total - e.price
                         e.quantity--
+                         sessionStorage.setItem("product", JSON.stringify(product))
+                         sessionStorage.setItem("total", JSON.stringify(total))
 
                         $(obj).parent().find(".quantity > span").text(e.quantity)
                         $("#"+flow+" ."+id+" span").text(e.quantity)
 
-                        // $("#"+flow+" .quantity > span").text(e.quantity) // меням в листе заказов значение
-                        // $("#"+context+" .quantity > span").text(e.quantity) // меняем в карточке блюда
 
-                        $('.total').text(total)
+                        totalDOM.text(total)
                         if(e.quantity == 0){
-
-                            turnOff(imgs)
-                            if(context == "list"){
+                            turnOff(imgs) // отключаеть обработчик если удалешь количетсво из карточки 
+                            if(context == "list"){ 
                                 var arr = $("#dishes img[data-id="+id+"]")
-                                turnOff(arr)
+                                turnOff(arr) // отключаешь елси из корзины
                             }
-                        
+                    
                             product.splice(index,1)
+                            basketDOM.css("transform","translateY("+product.length*50+"px)") 
+
+
+                            if(!product.length){
+                                basketDOM.removeClass("show_list visible").css("transform","translateY(0px)")
+                                bodyHtmlDOM.removeClass("not_scroll").css("overflow-x","hidden")
+                                sessionStorage.setItem("product", JSON.stringify(product))
+                            }
+
                             loadLIST(product) // 3 повесил обработчик 
-                            $(".order").text(product.length);
+                            orderDOM.text(product.length);
                             switch(context){
                                 case "dishes":
                                     $(obj).parent().parent().find("button").removeClass('hidden')
                                     $(obj).parent().removeClass("visible")
                                 break;
                                 case "list":
-                                    $("#"+flow+" .button_active"+" ."+id).removeClass("hidden")
-                                    $("#"+flow+" .button_active"+" ."+id).next().removeClass("visible")
+                                    buttonTurnOff(flow,id)
                                 break
                             }
                         }
@@ -239,58 +326,61 @@ $(document).ready(function(){
     function deleteFromList(){
         $(".delete").on("click", function(){
             var id = $(this).attr('data-id');
+            var flow = $(this).attr("data-flow")
             $(product).each(function(i,e){
                 if(e._id == id){
                     var index = product.indexOf(e)
                     product.splice(index,1)
-                    loadLIST(product) // раз повесил обработчик
-                    $("#dishes "+"."+id+"").removeClass("hidden").next().removeClass('visible')
-                    $(".order").text(product.length);
-                    $(".total").text(total = total - (e.price * e.quantity))
-                    $(".total").text(total);
+                    loadLIST(product)
+                    buttonTurnOff(flow,id)
+                    orderDOM.text(product.length);
+                    totalDOM.text(total = total - (e.price * e.quantity))
+                    totalDOM.text(total);
+                    var imgs = $("#dishes img[data-id="+e._id+"]")
+                    turnOff(imgs)
                 }
             })
+            if(!product.length){
+                 basketDOM.removeClass("show_list visible");
+                 bodyHtmlDOM.removeClass("not_scroll").css("overflow-x","hidden")
+            }
         })
-        $("#list .item ul li .decrement").on("click",function(){
-            // decrimentList(this)
-            decrement(this)
-        })
-         $("#list .item ul li .increment").on("click",function(){
-            // decrimentList(this)
-            increment(this)
-
-        })
-        // $("#list .item ul li .increment").on("click",function(){
-        //     decrimentList(this)
-        // })
     }
 
 
+    function takeDishMobile(dishes){
+         $(".select > select").change(function(){
+            var array = [];
+            var dish = $("select option:selected").val();
+            $(dishes).each(function(i,e){
+                    if(e.dish == dish){
+                        array.push(e)
+                        current = dish;
+                    }else{
+                        current = "";
+                        return
+                    }
+                })
+            loadDOM(array)
 
+        })   
+    }
+    
 
     function increment(obj){
         var id = $(obj).attr('data-id');
         var context = $(obj).attr("data-context");
         var flow = $(obj).attr("data-flow");
-        // var imgs = $("#dishes").parent().find("img");
-
-        // console.log(id, "id")
-        // console.log(context, "context")
-        // console.log(flow, "flow")
-        // console.log(imgs, "img")
-
             $(product).each(function(i,e){
                 if(e._id == id){
                     total = total + e.price
                     e.quantity++
-                    // $($(obj).prev().children().eq(0)).text(e.quantity)
-                    // $("#list"+" ."+id+" span").text(e.quantity)
-                      // $("#"+flow+" .quantity > span").text(e.quantity) // меням в листе заказов значение
-                      // $("#"+context+" .quantity > span").text(e.quantity)
-                       $(obj).parent().find(".quantity > span").text(e.quantity)
-                       $("#"+flow+" ."+id+" span").text(e.quantity)
+                    sessionStorage.setItem("product", JSON.stringify(product))
+                    sessionStorage.setItem("total", JSON.stringify(total))
+                    $(obj).parent().find(".quantity > span").text(e.quantity)
+                    $("#"+flow+" ."+id+" span").text(e.quantity)
                 }
-                    $('.total').text(total)
+                    totalDOM.text(total)
             })
         }
 
@@ -301,17 +391,16 @@ $(document).ready(function(){
             loadDOM(dishes)
             takeDish(dishes)
             takeMenu(dishes)
+            takeDishMobile(dishes)
         })
 
     function takeDish(dishes){
         $(".deliver_menu ul li a").on("click", function(e){
-           var children = $("#dishes").children(),
-               l = children.length,
-               array = [];
+           var array = [];
             e.preventDefault()
             var dish = $(this).attr("data-dish");
             $(dishes).each(function(i,e){
-                if(e.dish == dish && current != dish){
+                if(e.dish == dish){
                     array.push(e)
                     current = dish;
                 }else{
@@ -341,6 +430,26 @@ $(document).ready(function(){
         var template = handlebars.compile($("#template_dish").html())
         clearChildren() 
         $("#dishes").append(template(dishes))
+        var b = [];
+        if(product.length){ // когда уже выбрал товар и ходишь по ассортименту
+            for(var i = 0; i < product.length; ++i){
+               buttonTurnOn("dishes",product[i]._id)
+               $("#dishes"+" ."+product[i]._id+" span").text(product[i]['quantity'])
+               var imgs = $("#dishes img[data-id="+product[i]._id+"]")
+               takeQuanity(imgs)
+               totalDOM.text(total);
+               orderDOM.text(product.length);
+               basketDOM.css("transform","translateY("+product.length*50+"px)")
+            }
+        }
+
+        if($(window).width() < 480){
+            orderMobileDOM.text(product.length)
+            orderMobileDOM.off('click')
+            orderMobileDOM.on("click", function(){
+                  basketDOM.toggleClass("visible, show_list")
+            })
+        }
         basket(data)
     }
  
@@ -349,29 +458,98 @@ $(document).ready(function(){
             list.list = data
         var template = handlebars.compile($("#template_list").html())
         clearChildren(true)
-        console.log(data)
         $("#list").append(template(list))
         deleteFromList()
+        takeQuanity($("#list .item ul li img"))
+        resizeWindow()
     }
+        $(".send_order").on('click', function(){
+            $(".popover").addClass("visible")
+            $(".box").addClass("show_list")
 
-})
+            $(".out").on("click", function(){
+                $(".popover").removeClass("visible")
+                $(".box").removeClass("show_list")
+                bodyHtmlDOM.removeClass("not_scroll")
+            })
+            bodyHtmlDOM.addClass("not_scroll")
 
-/*
-связать обработчики количества товара для объетка list 
-сейчас завязан на basket функции чей контекст функции dishes блюда
-каждый раз когда нажимаешь на кнопку добавить в корзину устанавливаються обработчики на выбор количетва товара
-определить последовательность установки обработчиков на кнопках уколичества
-1) Загрузились блюда
-    1.1) Установили обработчик на кнопуку в карточке блюда при нажатии пунтк 2
-2) Навешали обработчик на количество товара в нутри функции загрузки блюд
-    2.1) При нажатии загружаем товары в корзину
-    2.2) В функции декримента при условии что количесво равно 0 мы отключаем обработчики 
-        на кнопках кол-во товара так как обработчик устанавливаеться когда нажимешь на кнопку 1 пункт
+            var array = []
+            $("#form").submit(function(e){
+                e.preventDefault()
+                var flag = false;
+                var arr = $("form input");
+                arr.each(function(i,e){
+                    $(e).removeClass("arr")
+                })
+                $(":input[required]").each(function(){
+                    if($(this).val() === ""){
+                        $(this).addClass("err")
+                        flag = true;
+                    }else{
 
-как связать состояние блюда а именное его количество 
-дать ссылку на 2 объекта в глобальной области
-сделать онидаковую структуру 
-написать одну функции снятия обработчиков 
+                    } 
+                })
+                if(flag) {return false;} else{
+
+                    var data = {}
+                    arr.each(function(i,e){
+                        data[$(e).attr("name")] = $(e).val();
+                    })
+                    var order = {};
+                    order['header'] = "<h4>Информация заказа</h4><table style='border: 1px solid; text-align: center; border-collapse: collapse;'><tr><th style='border-right: 1px solid;'>Название</th><th>Количетсво</th></tr>"
+                    for(var i = 0; i < product.length; ++i){
+
+                    order['header'] += "<tr style='border: 1px solid;'><td style='border: 1px solid;'>"+product[i]['name']+"</td><td style='border: 1px solid;'>"+product[i]['quantity']+"</tr></td>";
+                    }
+                    order['header'] += "</table><br/><br/><h4>Информация доставки</h4>"
+
+                    order['name'] = "<table style='border: 1px solid; border-collapse: collapse; text-align: center'>"+
+                            "<tr style='border: 1px solid;'>"+
+                              "<th style='border-right: 1px solid;'>Имя</th>"+
+                              "<th style='border-right: 1px solid;'>Телефон</th>"+
+                              "<th style='border-right: 1px solid;'>Улица</th>"+
+                              "<th style='border-right: 1px solid;'>Дом</th>"+
+                              "<th style='border-right: 1px solid;'>Подъезд</th>"+
+                              "<th style='border-right: 1px solid;'>Домофон</th>"+
+                              "<th style='border-right: 1px solid;'>Квартира</th>"+
+                              "<th style='border-right: 1px solid;'>Примичание</th>"+
+                            "</tr>"+
+                            "<tr><td style='border-right: 1px solid;'>"+data['name']+"</td><td style='border-right: 1px solid;'>"+data['phone']+"</td><td style='border-right: 1px solid;'>"+data['street']+
+                            "</td><td style='border-right: 1px solid;'>"+data['home']+"</td><td style='border-right: 1px solid;'>"+data['port']+
+                            "</td><td style='border-right: 1px solid;'>"+data['intercom']+"</td><td style='border-right: 1px solid;'>"+data['flat']+
+                            "</td><td style='border-right: 1px solid;'>"+data['area']+"</td></tr>"
+
+                  $.ajax({
+                    url: "/orderData.php",
+                    type: "POST",
+                    data: order,
+                    success: function(res){
+                        console.log(res)
+                    }
+                 })
+
+                for(var x = 0; x < product.length; ++x){
+                    buttonTurnOff("dishes",product[x]["_id"])
+                }
+                product = [];
+                sessionStorage.clear()
+                $(".popover").removeClass("visible")
+                $(".box").removeClass("show_list")
+                bodyHtmlDOM.removeClass("not_scroll")
+                basketDOM.removeClass("visible");
+                orderDOM.text(product.length);
+                totalDOM.text(total)
+                basketDOM.css("transform","translateY(0px)")
+                // buttonsDOM = document.querySelectorAll("#dishes button")
+                // console.log(buttonsDOM)
+
+            }
+
+         })
+     
+    })
+});
 
 
 
@@ -388,4 +566,3 @@ $(document).ready(function(){
 
 
 
-*/

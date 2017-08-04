@@ -1,6 +1,9 @@
 @import base
 @import side_menu
 @import menu
+button
+	width: 200px !important
+	height: 60px
 .fixed
 	position: fixed
 	top: 0
@@ -8,9 +11,22 @@
 	width: 100%
 	box-shadow: 0px 1px 8px rgba(0,0,0,.5)
 	z-index: 100
+.error
+	color: red
+	margin: 5px 0px
+	font-size: 1em
+.deliver
+	.container
+		padding: 0px 0px
+
 .wrap_deliver
 	h1
 		font-size: 2.5em
+		text-align: center
+		margin: 30px 0px
+		@media all and (max-width: 1150px)
+			text-align: center
+			margin: 30px 0px
 	.toogle
 		margin: 0 auto
 		width: calc(100% /3)
@@ -22,6 +38,8 @@
 				align-items: center
 				padding: 7px 15px
 				border: 1px solid #cacaca
+				@media all and (max-width: 360px)
+					padding: 7px
 				&:hover
 					border: 1px solid #f53a39
 				span 
@@ -33,10 +51,17 @@
 		background-color: white
 		border-radius: 9px
 		margin-top: 40px
+		@media all and (max-width: 990px)
+			width: 300px
+			margin: 30px auto
+			display: flex
+			justify-content: center
 		ul 
 			display: flex
 			justify-content: space-between
 			padding: 25px 20px 15px 20px
+			@media all and (max-width: 990px)
+				display: none
 			&:last-child
 				padding-top: 0px
 				padding-bottom: 25px
@@ -45,12 +70,29 @@
 					color: black
 					font-size: 1.1em
 					padding: 7px 15px
+		p 
+			margin: 0 auto
+			width: 320px
+			display: flex
+			justify-content: center
+			padding: 5px
+			@media all and (min-width: 990px)
+				display: none
+			select
+				width: 100%
+				padding: 5px
+				border: none
+
 	.wrap_items
 		display: flex
 		flex-flow: wrap
+		// justify-content: space-around
 		margin-top: 50px
+		@media all and (max-width: 1150px)
+			justify-content: space-around
+
 		.item 
-			width: 346px
+			width: 363px
 			// height: 100%
 			margin-right: 30px
 			margin-bottom: 30px
@@ -58,6 +100,10 @@
 			box-shadow: 2px 2px 5px 0px rgba(143,143,143,.5)
 			&:nth-child(3n+1)
 				margin-right: 0px
+			@media all and (max-width: 1147px)
+				margin-right: 0px	
+			@media all and (max-width: 360px)
+			 	width: 320px
 			p
 				text-align: center
 				&:nth-of-type(1)
@@ -75,14 +121,11 @@
 					color: #626065
 			button 
 				width: 100%
-				// margin: 20px 0px
 				margin-top: auto
 
-			img 
-				display: block
-				max-width: 100%
-				min-height: 100%
-
+			.foto_dish
+				img 
+					width: 100%
 			.caption
 				padding: 20px 30px
 				background-color: white
@@ -90,12 +133,16 @@
 				display: flex 
 				flex-direction: column
 				justify-content: space-around
+				@media all and (max-width: 480px)
+					padding: 15px
+					min-height: 320px
 				.button_active
 					position: relative
+					align-self: center
 					button
 						visibility: visible
 						opacity: 1
-						transition: visible 0s, opacity .2s
+						transition: visibility 0s, opacity .2s
 					.quanti
 						position: absolute
 						visibility: hidden
@@ -104,9 +151,10 @@
 						top: 12px
 						display: flex
 						justify-content: center
-						transition: visible 0s, opacity .2s
+						transition: visibility 0s, opacity .2s
 						img 
 							position: absolute
+							height: 47px
 						.decrement
 							left: 0
 						.increment
@@ -127,54 +175,99 @@
 .basket
 	visibility: hidden
 	opacity: 0
-	border-top: 1px solid #f4eeee
 	position: fixed
 	bottom: 0px
 	background-color: white
-	transition: visibility .0s, opacity .2s, transform .7s
-	// transform: translateY(300px)
-	// box-shadow: 0px 1px 8px rgba(0,0,0,.5)
+	transition: visibility .7s, opacity .8sm, transform .7s
+	transform: translateY(0px)
+	box-shadow: 0px 1px 8px rgba(0,0,0,.5)
+	.container
+		@media all and (max-width: 480px)
+			padding: 0px 5px
 	.wrap_basket
 		.wrap_items
 			display: flex
-			height: 90px
+			height: 70px
 			justify-content: space-between
 			.item	
 				display: flex
 				align-items: center
+				.order
+					@media all and (max-width: 480px)
+						position: absolute
+						left: 20px
+						color: #f53a39
+						font-family: RobotoRegular
+						font-weight: bold
+						font-size: 2em
+						top: 0px
+						padding: 5px 8px
+				.mobile
+					span 
+						display: none
+						@media all and (max-width: 480px)
+							display: block
+				.desktop
+					display: flex
+					align-items: center
+					@media all and (max-width: 480px)
+						display: none
 				img 
 					margin-right: 20px
+					@media all and (max-width: 480px)
+						position: relative
+						margin-right: 10px
 				span
 					font-size: 1.5em
+					@media all and (max-width: 768px)
+						font-size: 1.1em
+						font-weight: bold
+						font-family: RobotoLight
 				em
 					font-style: normal
 					margin-left: 10px
 					font-size: 1.2em
 				a 
 					color: #f53a39
-					margin-left: 20px
+					margin-left: 10px
 				button
 					margin-left: 20px
+					@media all and (max-width: 480px)
+						width: 150px !important
+						margin-right: 5px
+						height: 50px
 	.wrap_list
 		display: flex
 		justify-content: space-between
 		flex-direction: column
 		max-height: 300px
 		overflow: auto
+		transform: translateY(0px)
 		.item 
 			ul
 				display: flex
-				height: 60px
+				height: 50px
 				align-items: center
 				justify-content: space-between
-				border-bottom: 1px solid gray
+				@media all and (max-width: 480px)
+					border-top: 1px solid #f53a39
+				.name
+					max-width: 200px
+					@media all and (max-width: 480px)
+						max-width: 115px
+						font-size: .8em
+				.gramm
+					@media all and (max-width: 480px)
+						display: none
 				.quanti
 					display: flex
 					align-items: center
-					em 
+					em
 						font-family: RobotoThin
 						font-size: .9em
 						font-style: normal
+						@media all and (max-width: 480px)
+							display: none
 					img 
 						height: 25px
 						margin: 0 5px
@@ -183,6 +276,115 @@
 						border: 1px solid #eee
 						width: 30px
 						text-align: center
+				.delete
+					color: #f53a39
+					@media all and (max-width: 480px)
+						font-size: 2em
+						text-decoration: none
+						font-weight: bold
+						margin-bottom: 3px
+.popover
+	position: fixed
+	background-color: rgba(0,0,0,0.6)
+	width: 100%
+	height: 100%
+	top: 0
+	left: 0
+	z-index: 100
+	display: flex
+	align-items: center
+	justify-content: center
+	visibility: hidden
+	opacity: 0
+	transition: visibility 0s, opacity .6s
+	.box
+		width: 950px
+		background-color: white
+		text-align: center
+		padding: 15px 15px
+		position: relative
+		transform: translateY(-200%)
+		transition: transform .7s
+		transition-delay: 0.5
+		@media all and(max-width: 960px)
+			width: 80%
+			padding: 15px
+		@media all and(max-width: 400px)
+			width: 95%
+		.out
+			position: absolute
+			font-size: 3em
+			right: 15px
+			top: 0px
+			@media all and(max-width: 400px)
+				right: 0px
+				top: -20px
+		h3 
+			margin: 30px 0px
+			font-size: 2em
+			@media all and(max-width: 717px)
+				font-size: 1.2em
+				margin: 30px 0px
+			@media all and(max-width: 400px)
+				margin: 15px 0px
+		form
+			display: flex
+			flex-direction: column
+			align-self: center
+			input 
+				height: 40px
+				border: 1px solid #d8d8d8
+				padding-left: 15px
+				color: black
+				margin: 0px 0px 15px
+				@media all and(max-width: 717px)
+					font-size: .9em
+					padding-left: 5px
+					margin: 0px 0px 7px
+				@media all and(max-width: 460px)
+					font-size: .8em
+				@media all and(max-width: 400px)
+					font-size: .7em
+			.err
+				border: 1px solid red
+			.top_input
+				display: flex 
+				justify-content: space-between
+
+				input
+					width: 452px
+					margin-right: 10px
+					&:last-child
+						margin-right: 0px
+					@media all and(max-width: 717px)
+						width: 100%
+			.street
+				input 
+					width: 100%
+			.adress
+				display: flex
+				justify-content: space-between
+				input 
+					margin-right: 15px
+					&:last-child
+						margin-right: 0px
+					@media all and(max-width: 717px)
+						width: 50%
+			.description
+				textarea
+					width: 100%
+					color: black
+					padding-left: 15px
+					border: 1px solid #d8d8d8
+					@media all and(max-width: 460px)
+						font-size: .8em
+					@media all and(max-width: 717px)
+						padding-left: 5px
+			button
+				margin-top: 25px
+				@media all and(max-width: 400px)
+					margin-top: 5px
+					height: 45px
 .visible
 	opacity: 1 !important
 	visibility: visible !important
@@ -197,6 +399,21 @@
 	top: 0
 	left: 0
 .show_list
-	// transform: translateY(0px)
+	transform: translateY(0px) !important
+	transition: transform .7s
+.close_list
+	transition: transform 0s
+.not_scroll
+	overflow: hidden
+	overflow-x: hidden
+	overflow-y: hidden
+	@media all and(max-width: 1023px)
+		position: fixed
+		user-zoom: fixed
+
+
+
+
+
 	
 @import footer

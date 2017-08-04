@@ -15,8 +15,8 @@
 	background-repeat: no-repeat
 	background-size: cover
 	background-attachment: fixed
-	@media all and(max-width: 480px)
-		height: 100%
+	@media all and(max-width: 1023px)
+		// height: 100%
 		background-attachment: scroll
 	.wrap_paralax
 		.wrap_content
@@ -33,6 +33,8 @@
 					max-width: 100%
 					max-height: 100%
 					@media all and(max-width: 480px)
+						height: 200px
+					@media all and(max-width: 320px)
 						height: 100px
 				h1 
 					font-size: 3.5em
@@ -79,10 +81,12 @@
 				.item
 					width: calc(100% / 2)
 					text-align: left
+					p 
+						padding: 0px 0px 15px
 					@media all and(max-width: 1150px)
 						width: 100%
 						p 
-							padding: 20px 0px
+							padding: 15px 0px
 					img 
 						display: block
 						max-width: 100%
@@ -103,7 +107,7 @@
 			background-size: contain
 			padding-top: 150px
 		@media all and(max-width: 768px)
-			padding-top: 40px
+			padding-top: 20px
 		@media all and(max-width: 480px)
 			background-position: 135px bottom
 		@media all and(max-width: 320px)
@@ -148,7 +152,6 @@
 							color: #f53a39
 							font-family: RobotoLight
 							font-size: 1em
-							width: 60%
 				.cook_pos
 					@media all and(max-width: 1005px)
 						display: none
@@ -161,7 +164,7 @@
 			background-image: url('../img/utka-min.png')
 			background-size: contain
 			background-repeat: no-repeat
-			background-position: 140% bottom
+			background-position: 180px bottom
 		@media all and(max-width: 480px)
 			background-position: 90px bottom
 			padding: 30px 0px
@@ -185,18 +188,18 @@
 							max-height: 100%
 							max-width: 100%
 					p 
-						width: 75%
+						width: 90%
 						color: #626065
 						padding: 20px 0px
 						font-family: RobotoThin
 						line-height: 22px
 						@media all and(max-width: 768px)
 							font-family: RobotoLight
-							width: 60%
+							width: 80%
 							color: black
 							font-weight: bold
 						@media all and(max-width: 320px)
-							width: 70%
+							width: 100%
 							padding: 10px 0px 20px 0px
 
 					button
@@ -209,6 +212,8 @@
 				.utka
 					@media all and(max-width: 768px)
 						display: none
+					@media all and(max-width: 1024px)
+						align-self: flex-end
 .book_in
 	background-image: url('../img/bg_book_in-min.jpg')
 	background-repeat: no-repeat
@@ -341,6 +346,8 @@
 	background-size: cover
 	.wrap_feel_back
 		padding: 100px 0px
+		@media all and(max-width: 768px)
+			padding: 30px 0px
 		.wrap_content
 			width: calc(100% - 290px)
 			margin: 0 auto

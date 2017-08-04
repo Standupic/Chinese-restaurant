@@ -1,0 +1,296 @@
+ <!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title>Ресторан китайской кухни - меню, доставка еды ЮВАО, Люберцы</title>
+	<meta name="description" content="Китайская еда с доставкой - лапша, пельмени, рис, спы. Ресторан Великая стена в г. Люберцы.">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="css/_deliver.min.css">
+</head>
+<html>
+<body>
+<div class="wrap" style="background: #eeeeee">
+	<section class="header">
+		<div class="wrap_menu">
+			<div class="container">
+				<div class="menu">
+					<div class="logo" itemscope itemtype="http://http://www.chinarestro.ru">
+						<a href="index.html"><img src="../img/logo_text.svg" alt="Рестора Великая стена"></a>
+					</div>
+					<div class="list_menu">
+						<ul>
+							<li><a href="main.html" class="page">О ресторане</a></li>
+							<li><a href="#" class="page">Шеф</a></li>
+							<li><a href="#" class="page">Меню</a></li>
+							<li><a href="#" class="page">Резерв</a></li>
+							<li><a href="#" class="page">Отзывы</a></li>
+							<li><a href="#" class="page">Контакты</a></li>
+						</ul>
+					</div>
+					<div class="tel">
+						<a href="tel:+74951234567">+7(495)123-45-67</a>
+					</div>
+				</div>
+				<div class="mobile_menu">
+					<div class="logo">
+						<img src="../img/logo_text.svg" alt="">
+					</div>
+						<a href="#" class="burger">
+							<span></span>
+						</a>
+					<div class="sidemenu">
+						<ul>
+							<li class="has-children">
+								<a href="#" class="page">
+									О ресторане
+								</a>
+								<ul>
+								</ul>
+							</li>
+							<li>
+								<a href="#" class="page">
+									Шеф
+								</a>
+							</li>
+							<li>
+								<a href="#" class="page">
+									Меню
+								</a>
+							</li>
+							<li>
+								<a href="#" class="page">
+									Резерв
+								</a>
+							</li>
+							<li>
+								<a href="#" class="page">
+									Отзывы
+								</a>
+							</li>
+							<li>
+								<a href="#" class="page">
+									Контакты
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="deliver">
+		<div class="container">
+			<div class="wrap_deliver">
+				<h1>Meню</h1>
+				<div class="toogle">
+					<ul>
+						<li class="active" data-menu="main">
+							<img src="../img/rezerv_stolik.svg" width="50" alt=""><span>Основное меню</span>
+						</li>
+						<li data-menu="deliver">
+							<img src="../img/rezerv_stolik.svg" width="50" alt=""><span>Меню доставки</span>
+						</li>
+					</ul>
+				</div>
+				<div class="deliver_menu">
+					<ul>
+						<li><a href="#" data-dish="dark">Утка</a></li>
+						<li><a href="#" data-dish="rise">Спринг,Роллы</a></li>
+						<li><a href="#" >Салаты</a></li>
+						<li><a href="#">Супы</a></li>
+						<li><a href="#">Блюда из мяса</a></li>
+						<li><a href="#">Овощи, горячее</a></li>
+						<li><a href="#">Рыба, морепродукты</a></li>
+					</ul>
+					<ul>
+						<li><a href="#">Лапша</a></li>
+						<li><a href="#">Рис</a></li>
+						<li><a href="#">Пельмени, дим самы</a></li>
+						<li><a href="#">Роллы, наборы</a></li>
+						<li><a href="#">Пицца</a></li>
+						<li><a href="#">Десерты</a></li>
+						<li><a href="#">Напитки</a></li>
+					</ul>
+					<p class="select">               
+						<select>
+						  <option>Выберите блюдо </option>
+						  <option value="dark">Утка </option>
+						  <option data-dish="rise">Спринг,Роллы </option>
+						  <option data-dish="dark">Утка </option>
+						  <option data-dish="rise">Спринг,Роллы </option>
+						</select>
+					</p>
+				</div>
+				<div class="wrap_items" id="dishes">
+					<script id="template_dish" type="text/x-handlebars-template">
+						{{#each dishes}}
+						<div class="item">
+							<div class="foto_dish"><img src="../img/1.png" alt=""></div>
+							<div class="caption">
+								<p>{{name}}</p>
+								<p>{{ingredient}}</p>
+								<p><span>{{price}} ₽</span><em>/ {{gramm}} гр</em></p>
+								<div class="button_active">
+									<button data-id={{_id}}>Добавить в корзину</button>
+									<div class="quanti {{_id}}">
+										<img src="../img/minus.svg" data-context="dishes" class="decrement" data-context="dishes" data-flow="list" data-id={{_id}} alt=""/>
+										<div class="quantity">
+											<span class="{{_id}}">{{quantity}}</span>
+										</div>
+										<img src="../img/plus.svg" data-context="dishes" class="increment" data-flow="list" data-id={{_id}} alt=""/>
+									</div>
+								</div>	
+							</div>
+						</div>
+						{{/each}}
+					</script>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer class="footer" style="background: white">
+		<div class="wrap_footer">
+			<div class="container">
+				<div class="wrap_content">
+					<div class="wrap_items">
+						<div class="item">
+							<h4>Мы работаем:</h4>
+							<p class="time">Вс-чт: 11:00 - 23:00</p>
+							<p class="time">Пт-сб: 11:00 - 02:00</p>
+						</div>
+						<div class="item">
+							<div>
+								<h4>Контакты</h4>
+								<p>г. Люберцы 3-е почтовое отделение 65</br>тел: <a href="tel:+74957444935">+ 7(495)744-49-35</a>, <a href="tel:+79252995678">+7(925)299-56-78</a></p>
+							</div>	
+						</div>
+						<div class="item">
+							<ul>
+								<li><img src="../img/linkedin.svg" alt="linkedin"></li>
+								<li><img src="../img/instagram.svg" alt="instagram"></li>
+								<li><img src="../img/vk.svg" alt="vkontakte"></li>
+								<li><img src="../img/facebook.svg" alt="facebook"></li>
+								<li><img src="../img/twitter.svg" alt="twitter"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div><!--end wrap-->
+<section class="basket">
+	<div class="container">
+		<div class="wrap_basket">
+			<div class="wrap_items">
+				<div class="item">
+					<img src="../img/recycle.svg" alt=""><!-- <span class="order">1</span> -->
+					<div class="mobile"><span class="order"></span></div>
+					<div class="desktop"><span>Количество заказов: <em class="order">1</em></span><a href="#" class="show">показать</a></div>
+				</div>
+				<div class="item">
+					<span class="total">360</span><em>₽</em>
+					<button class="send_order">Оформить заказ</button>
+				</div>
+			</div>
+			<div class="wrap_list" id="list">
+				<script id="template_list" type="text/x-handlebars-template">
+					{{#each list}}
+						<div class="item">
+							<ul>
+								<li class="name">{{name}}</li>
+								<li class="gramm">{{gramm}}</li>
+								<li class="{{_id}} quanti"><em>Количество</em>
+								<img src="../img/minus.svg" class="decrement" data-id={{_id}} data-context="list" data-flow="dishes" alt=""/>
+									<div class="quantity">
+										<span class="{{_id}}">{{quantity}}</span>
+									</div>
+								<img src="../img/plus.svg" data-context="list" data-flow="dishes" class="increment" data-id={{_id}} alt=""/>
+								</li>
+								<li class="price">{{price}} ₽</li>
+								<li data-id="{{_id}}" data-flow="dishes" class="delete">удалить</li>
+							</ul>
+						</div>
+					{{/each}}
+				</script>	
+			</div>
+		</div>
+</section>
+<div class="overlay">
+	<div class="body_overlay">
+		<div class="krest">
+			<a href="#" class="burger">
+				<span></span>
+			</a>
+		</div>
+		<header>
+			<img src="../img/logo_text.svg" alt="">
+		</header>
+		<ul>
+			<li class="has-children">
+				<a href="main.html" class="page">
+					  О ресторане
+				</a>
+			<ul>
+				<!--pod menu-->
+			</ul>
+			</li>
+			<li>
+				<a href="main.html" class="page">
+					Шеф
+				</a>
+			</li>
+			<li>
+				<a href="main.html" class="page">
+					Меню
+				</a>
+			</li>
+			<li>
+				<a href="main.html" class="page">
+					Резерв
+				</a>
+			</li>
+			<li>
+				<a href="main.html" class="page">
+					Отзывы
+				</a>
+			</li>
+			<li>
+				<a href="main.html" class="page">
+					Контакты
+				</a>
+			</li>
+		</ul>
+
+	</div>
+</div>
+<div class="popover">
+	<div class="box">
+		<div class="out">
+			&times;
+		</div>
+		<h3>Оформление заказа</h3>
+		<form action="orderData.php" method="POST" id="form">
+			<div class="top_input">
+				<input type="text" name="name" placeholder="Ваше имя" required>
+				<input type="text" name="phone" placeholder="Ваш телефон" required>
+			</div>
+			<div class="street">
+				<input type="text" name="street" placeholder="Название улицы" required>
+			<div>
+			<div class="adress">
+				<input type="text" name="home" placeholder="Дом" required>
+				<input type="text" name="port" placeholder="Подьезд" required>
+				<input type="text" name="intercom" placeholder="Домофон">
+				<input type="text" name="flat" placeholder="Квр." required>			
+			</div>
+			<div class="description">
+				<textarea placeholder="Примечания к заказу" name="area" id="" cols="30" rows="5"></textarea>
+			</div>
+			<button type="submit">Отправить</button>
+		</form>	
+	</div>
+</div>
+</body>
+<script src="js/deliver.min.js"></script>
+</html>

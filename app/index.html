@@ -1,39 +1,47 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <head>
 	<meta charset="utf-8">
 	<title>Заголовок</title>
 	<meta name="description" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-	<link rel="stylesheet" href="css/_deliver.min.css">
+	<link rel="stylesheet" href="css/_main.min.css">
+	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="css/owl.carousel.css">
+	 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+	<style>
+		.mCSB_inside > .mCSB_container{
+			margin-right: 15px
+		}
+	</style>
 </head>
 <html>
-<body>
-<div class="wrap" style="background: #eeeeee">
+<body class="body">
+<div class="wrap">
 	<section class="header">
 		<div class="wrap_menu">
 			<div class="container">
 				<div class="menu">
-					<div class="logo">
-						<img src="../img/logo_text.svg" alt="">
+					<div class="logo" itemscope itemtype="http://schema.org/Restaurant">
+						<a href="http://www.chinarestro.ru"><img src="../img/logo_text.svg" alt="Китайский ресторан" itemprop="logo"></a>
 					</div>
 					<div class="list_menu">
 						<ul>
-							<li><a href="#">О ресторане</a></li>
-							<li><a href="#">Шеф</a></li>
-							<li><a href="#">Меню</a></li>
-							<li><a href="#">Резерв</a></li>
-							<li><a href="#">Отзывы</a></li>
-							<li><a href="#">Контакты</a></li>
+							<li><a href="" data-go="#about" class="go_to">О ресторане</a></li>
+							<li><a href="" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">Шеф</a></li>
+							<li><a href="http://www.chinarestro.ru/deliver.html" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">Меню</a></li>
+							<li><a href="http://www.chinarestro.ru" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">Резерв</a></li>
+							<li><a href="http://www.chinarestro.ru" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">Отзывы</a></li>
+							<li><a href="http://www.chinarestro.ru" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">Контакты</a></li>
 						</ul>
 					</div>
-					<div class="tel">
-						<a href="tel:+74951234567">+7(495)123-45-67</a>
+					<div class="tel" itemscope itemtype="http://schema.org/Restaurant">
+						<a href="tel:+74951234567" itemprop="telephone">+7(495)123-45-67</a>
 					</div>
 				</div>
 				<div class="mobile_menu">
-					<div class="logo">
-						<img src="../img/logo_text.svg" alt="">
+					<div class="logo" itemscope itemtype="http://schema.org/Restaurant">
+						<a href="http://www.chinarestro.ru"><img src="../img/logo_text.svg" alt="Китайский ресторан" itemprop="logo"></a>
 					</div>
 						<a href="#" class="burger">
 							<span></span>
@@ -41,34 +49,34 @@
 					<div class="sidemenu">
 						<ul>
 							<li class="has-children">
-								<a href="#">
-									  О ресторане
+								<a href="http://www.chinarestro.ru" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">
+									 О ресторане
 								</a>
 								<ul>
 								</ul>
 							</li>
 							<li>
-								<a href="#">
+								<a href="http://www.chinarestro.ru" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">
 									Шеф
 								</a>
 							</li>
 							<li>
-								<a href="#">
+								<a href="http://www.chinarestro.ru/deliver.html" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">
 									Меню
 								</a>
 							</li>
 							<li>
-								<a href="#">
+								<a href="http://www.chinarestro.ru" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">
 									Резерв
 								</a>
 							</li>
 							<li>
-								<a href="#">
+								<a href="http://www.chinarestro.ru" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">
 									Отзывы
 								</a>
 							</li>
 							<li>
-								<a href="#">
+								<a href="http://www.chinarestro.ru" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">
 									Контакты
 								</a>
 							</li>
@@ -78,90 +86,207 @@
 			</div>
 		</div>
 	</section>
-	<section class="deliver">
-		<div class="container">
-			<div class="wrap_deliver">
-				<h1>Meню</h1>
-				<div class="toogle">
-					<ul>
-						<li class="active" data-menu="main">
-							<img src="../img/rezerv_stolik.svg" width="50" alt=""><span>Основное меню</span>
-						</li>
-						<li data-menu="deliver">
-							<img src="../img/rezerv_stolik.svg" width="50" alt=""><span>Меню доставки</span>
-						</li>
-					</ul>
-				</div>
-				<div class="deliver_menu">
-					<ul>
-						<li><a href="#" data-dish="dark">Утка</a></li>
-						<li><a href="#" data-dish="rise">Спринг,Роллы</a></li>
-						<li><a href="#">Салаты</a></li>
-						<li><a href="#">Супы</a></li>
-						<li><a href="#">Блюда из мяса</a></li>
-						<li><a href="#">Овощи, горячее</a></li>
-						<li><a href="#">Рыба, морепродукты</a></li>
-					</ul>
-					<ul>
-						<li><a href="#">Лапша</a></li>
-						<li><a href="#">Рис</a></li>
-						<li><a href="#">Пельмени, дим самы</a></li>
-						<li><a href="#">Роллы, наборы</a></li>
-						<li><a href="#">Пицца</a></li>
-						<li><a href="#">Десерты</a></li>
-						<li><a href="#">Напитки</a></li>
-					</ul>
-				</div>
-				<div class="wrap_items" id="dishes">
-					<script id="template_dish" type="text/x-handlebars-template">
-						{{#each dishes}}
-						<div class="item">
-							<div><img src="../img/dish.jpg" alt=""></div>
-							<div class="caption">
-								<p>{{name}}</p>
-								<p>{{ingredient}}</p>
-								<p><span>{{price}} ₽</span><em>/ {{gramm}} гр</em></p>
-								<div class="button_active">
-									<button data-id={{_id}} class="{{_id}}">Добавить в корзину</button>
-									<div class="quanti {{_id}}">
-										<img src="../img/minus.png" data-context="dishes" class="decrement" data-context="dishes" data-flow="list" data-id={{_id}} alt=""/>
-										<div class="quantity">
-											<span data-id={{_id}} class="{{_id}}"></span>
-										</div>
-										<img src="../img/plus.png" data-context="dishes" class="increment" data-flow="list" data-id={{_id}} alt=""/>
-									</div>
-								</div>	
-							</div>
+	<section class="paralax">
+		<div class="wrap_paralax">
+			<div class="container">
+				<div class="wrap_content" itemtype="http://schema.org/Restaurant">
+					<div class="content">
+						<div>
+						<img src="../img/logo_vs.svg" alt="Ресторан китайской кухни Великая стена" itemprop="logo">
 						</div>
-						{{/each}}
-					</script>
+						<h1 itemprop="name">Первый ресторан <span itemprop="servesCuisine">китайской кухни</span> <span itemprop="address"></br>в Люберцах</span></h1>
+						<p itemprop="hasMenu">В основе меню кухня почти со всех регионов Китая</p>
+						<a href="index.html">
+							<button>
+								Наше меню
+							</button>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<footer class="footer" style="background: white">
-		<div class="wrap_footer">
+	<section class="about">
+		<div class="wrap_about">
+			<div class="container">
+				<div class="wrap_content" id="about">
+					<h1>О ресторане</h1>
+					<div class="wrap_items" itemscope itemtype="http://schema.org/Restaurant">
+						<div class="item">
+							<img src="../img/foto_resta.jpg" alt="" itemprop="photo">
+						</div>
+						<div class="item">
+							<p itemprop="review">
+							Ресторан Великая стена один из первых ресторанов в Люберцах. Китайские повара познакомят вас с настоящими традициями китайских блюд. Только у нас вы сможете отведать настоящие блюда китайской кухни. 
+							</p>
+							<p itemprop="review">
+								Если вы желаете расслабиться в приятной обстановке и отведать кухню регионов Китая, тогда вам стоит посетить нас. 
+							</p>
+							<p itemprop="review">
+								В ресторане 2 основных зала и  зона для проведения банкетов. Помимо основных залов есть комната с караоке и круглым традиционным китайским столом, а также несколько VIP-кабинетов, рассчитанных на 8-10 человек.  Вы всегда сможете заказать столик в нашем ресторане. Многие жители района, а также приезжие из других уголков Москвы и области традиционно проводят банкеты, с очень невысокими ценами. 
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="cook">
+		<div class="wrap_cook">
 			<div class="container">
 				<div class="wrap_content">
 					<div class="wrap_items">
+						<div class="item" itemscope itemtype="http://schema.org/Restaurant">
+							<h2>Шеф повар</br><span itemprop="employee">Чжан Юйлу</span></h2>
+							<h3><span itemprop="employee">Zhang Yulu<span></h3>
+							<p itemprop="review">
+								Шеф повар ресторана «Великая стена» Чжан Юйлу (Zhang Yulu) собрал самые яркие блюда со всего Китая. Чжан Юйлу родился в городе Цзилинь и учился у самого знаменитого повара Лю Го Дун в городе Шеньян в северной части Китая. 
+							</p>
+							<p itemprop="description">
+								Также в разработке меню принял непосредственное участие мастер китайской кухни с многолетним стажем, известный бренд-шеф Цзинь Фучунь (Tszin Fuchun), который привнес в классические блюда современные акценты
+							</p>	
+						</div>
+						<div class="item cook_pos">
+							<img src="../img/cook-min.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="menu_res">
+		<div class="wrap_menu_res">
+			<div class="container">
+				<div class="wrap_content">
+					<div class="wrap_items">
+						<div class="item dec_menu" itemscope itemtype="http://schema.org/Restaurant">
+							<h3>Меню</h3>
+							<p itemprop="review">
+								Блюда китайской кухни – одни из самых полезных. Помимо питательных свойств, некоторым китайским блюдам присущи и лечебные свойства: существуют даже такие оригинальные шедевры, как супы от головной боли или от гриппа. При этом продуманное сочетание продуктов способствует правильному пищеварительному процессу и не вызывает ожирения. Китайцы едят все, что могут приготовить – этот факт известен во всем мире. Разнообразие китайской национальной кухни настолько велико, что с ней вряд ли сравнится какая-либо другая традиционная кулинария. Весь ассортимент китайских блюд можно условно разделить в зависимости от региона проживания.
+							</p>
+							<button>Подробнее</button>
+						</div>
+						<div class="item utka" itemscope itemtype="http://schema.org/Restaurant">
+							<img src="../img/utka-min.png" alt="" itemprop="photo">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="book_in">
+		<div class="wrap_book_in">
+			<div class="container">
+				<div class="wrap_content">
+					<h2>Резерв</h2 itemscope itemtype="http://schema.org/Restaurant">
+					<form action="send.php" method="POST" id="form">
+					<div class="wrap_items" >
 						<div class="item">
-							<h4>Мы работаем:</h4>
-							<p class="time">Вс-чт: 11:00 - 23:00</p>
-							<p class="time">Пт-сб: 11:00 - 02:00</p>
+							<div class="out_img">
+								<img src="../img/rezerv_stolik.svg" alt="">
+							</div>
+							<input type="checkbox" name="table" value="Стол" id="table">
+							<label for="table"><span></span><em itemprop="event">Столик</em></label>
+						</div>
+						<div class="item">
+							<div class="out_img">
+								<img src="../img/rezerv_dr.svg" alt="">
+							</div>							
+							<input type="checkbox" name="birthday" value="День рождения" id="birthday">
+							<label for="birthday"><span></span><em itemprop="event">День рождения</em></label>
+						</div>
+						<div class="item">
+							<div class="out_img">
+								<img src="../img/rezerv_svadba.svg" alt="">	
+							</div>
+							<input type="checkbox" name="wedding" value="Свадьба" id="wedding">
+							<label for="wedding"><span></span><em itemprop="event">Свадьба</em></label>
+						</div>
+						<div class="item">
+							<div class="out_img">
+							<img src="../img/rezerv_banket.svg" alt="">	
+							</div>
+							<input type="checkbox" name="selebrate" value="Банкет" id="selebrate">
+							<label for="selebrate"><span></span><em itemprop="event">Банкет</em></label>
+						</div>
+					</div>
+					<!-- <div class="wrap_inputs"> -->
+						<div class="wrap_inputs">
+							<div class="item input">
+								<input type="text" placeholder="Ваше имя" name="name" required>
+							</div>
+							<div class="item input">
+								<input type="text" id="phone" name="phone" placeholder="Телефон" required>
+							</div>
+							<div class="item"><button type="submit">Отправить</button></div>
+						</form>
+				
+					<!-- </div> -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="feel_back">
+		<div class="wrap_feel_back">
+			<div class="container">
+				<div class="wrap_content">
+					<h3>Отзывы</h3>
+					<div class="owl-carousel owl-theme">
+						<div class="item">
+							<p>SOKOLKATE, 4 Мая 2017
+							<span class="zvezda">
+								<img src="../img/zvezda.svg" alt="">
+								<img src="../img/zvezda.svg" alt="">
+								<img src="../img/zvezda.svg" alt="">
+								<img src="../img/zvezda.svg" alt="">
+								<img src="../img/zvezda.svg" alt="">
+							</span>
+							</p>
+							<p>Первый раз нас сюда друзья привели, отмечали небольшой праздник, так хорошо посидели. Остались только положительные впечатления от этого места, поэтому и сами стали сюда периодически заходить.  Отношение персонала тут хорошее, блюд много, не все конечно попробовали, но то, что пробовали - вкусное! Особенно любим их разные и необычные десерты. Цены сносные.</p>
+						</div>
+						<div class="item">
+							<p>Попробывали блюда от шеф повара "Утка по пекински", очень вкусно!!! Собираемся отметить тут день рождения мужа.</p>
+						</div>
+						<div class="item">
+							<p>Отзыв 3</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="map">
+		<div class="wrap_map">
+			<div class="content">
+				<div id="map" itemtype="http://schema.org/Restaurant" itemprop="hasMap" itemprop="geo">
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer class="footer">
+		<div class="wrap_footer">
+			<div class="container">
+				<div class="wrap_content">
+					<div class="wrap_items" itemscope itemtype="http://schema.org/Restaurant">
+						<div class="item">
+							<h4 itemprop="description">Мы работаем:</h4>
+							<p class="time" itemprop="peningHours">Вс-чт: 11:00 - 23:00</p>
+							<p class="time" itemprop="peningHours">Пт-сб: 11:00 - 02:00</p>
 						</div>
 						<div class="item">
 							<div>
-								<h4>Контакты</h4>
-								<p>г. Люберцы 3-е почтовое отделение 65</br>тел: <a href="tel:+74957444935">+ 7(495)744-49-35</a>, <a href="tel:+79252995678">+7(925)299-56-78</a></p>
+								<h4 itemprop="description">Контакты</h4>
+								<p itemprop="address">г. Люберцы. ул. 3-е почтовое отделение, дом 65</br>тел: <a href="tel:+74957444935" itemprop="telephone">+ 7(495)744-49-35</a>, <a href="tel:+79252995678" itemprop="telephone">+7(925)299-56-78</a></p>
 							</div>	
 						</div>
 						<div class="item">
 							<ul>
-								<li><img src="../img/google.jpg" alt="google"></li>
-								<li><img src="../img/twitter.jpg" alt="twitter"></li>
-								<li><img src="../img/vk.jpg" alt="vkontakte"></li>
-								<li><img src="../img/facebook.jpg" alt="facebook"></li>
-								<li><img src="../img/class.jpg" alt="odnoklassniki"></li>
+								<li><img src="../img/linkedin.svg" alt="linkedin"></li>
+								<li><img src="../img/instagram.svg" alt="instagram"></li>
+								<li><img src="../img/vk.svg" alt="vkontakte"></li>
+								<li><img src="../img/facebook.svg" alt="facebook"></li>
+								<li><img src="../img/twitter.svg" alt="twitter"></li>
 							</ul>
 						</div>
 					</div>
@@ -170,43 +295,6 @@
 		</div>
 	</footer>
 </div><!--end wrap-->
-<section class="basket">
-	<div class="container">
-		<div class="wrap_basket">
-			<div class="wrap_items">
-				<div class="item">
-					<img src="../img/korzina.jpg" alt="">
-					<span>Количество заказов: <em class="order">1</em></span><a href="#" class="show">показать</a>
-				</div>
-				<div class="item">
-					<span class="total">360</span><em>₽</em>
-					<button>Оформить заказ</button>
-				</div>
-			</div>
-			<div class="wrap_list" id="list">
-				<script id="template_list" type="text/x-handlebars-template">
-					{{#each list}}
-						<div class="item">
-							<ul>
-								<li class="name">{{name}}</li>
-								<li class="gramm">{{gramm}}</li>
-								<li class="{{_id}} quanti"><em>Количество</em>
-								<!-- <em class="decrement" data-id={{_id}}> minus </em> -->
-								<img src="../img/minus.png" class="decrement" data-id={{_id}} data-context="list" data-flow="dishes" alt=""/>
-									<div class="quantity">
-										<span class="{{_id}}">{{quantity}}</span>
-									</div>
-								<img src="../img/plus.png" data-context="list" data-flow="dishes" class="increment" data-id={{_id}} alt=""/>
-								</li>
-								<li class="price">{{price}}</li>
-								<li data-id="{{_id}}" class="delete">Удалить</li>
-							</ul>
-						</div>
-					{{/each}}
-				</script>	
-			</div>
-		</div>
-</section>
 <div class="overlay">
 	<div class="body_overlay">
 		<div class="krest">
@@ -214,12 +302,12 @@
 				<span></span>
 			</a>
 		</div>
-		<header>
-			<img src="../img/logo_text.svg" alt="">
+		<header itemscope itemtype="http://schema.org/Restaurant">
+			<img src="../img/logo_text.svg" alt="" itemprop="logo">
 		</header>
 		<ul>
 			<li class="has-children">
-				<a href="#">
+				<a href="http://www.chinarestro.ru" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">
 					  О ресторане
 				</a>
 			<ul>
@@ -227,27 +315,27 @@
 			</ul>
 			</li>
 			<li>
-				<a href="#">
+				<a href="http://www.chinarestro.ru" itemscope itemtype="http://schema.org/Restaurant" itemprop="url" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">
 					Шеф
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="http://www.chinarestro.ru/deliver.html" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">
 					Меню
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="http://www.chinarestro.ru" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">
 					Резерв
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="http://www.chinarestro.ru" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">
 					Отзывы
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="http://www.chinarestro.ru" itemscope itemtype="http://schema.org/Restaurant" itemprop="url">
 					Контакты
 				</a>
 			</li>
@@ -255,9 +343,7 @@
 
 	</div>
 </div>
-<div class="popover">
-	
-</div>
 </body>
-<script src="js/deliver.min.js"></script>
+<script src="js/common.min.js"></script>
 </html>
+
