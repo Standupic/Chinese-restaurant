@@ -1,3 +1,4 @@
+require("babel-polyfill");
 global.jQuery = require("jquery");
 var $ = require("jquery")
 var mask = require("jquery-mask-plugin")
@@ -5,6 +6,9 @@ import axios from 'axios'
 import handlebars from 'handlebars';
 
 $(document).ready(function(){
+    
+    $('#phone').mask('+7'+'(999) 999-9999');
+
 	var body = $(".body"),
         overlay = $(".overlay"),
         overlay_body = $(".body_overlay"),
@@ -25,10 +29,10 @@ $(document).ready(function(){
         quantityDishDOM = $("#dishes .quantity > span"),
         wraplistDOM = $(".wrap_list"),
         showDOM = $(".show"),
-        bodyHtmlDOM = $('body, html');
-        // buttonsDOM = document.querySelectorAll("#dishes button")
-        // console.log(buttonsDOM)
-        // deleteDOM = $(".delete");
+        bodyHtmlDOM = $('body, html'),
+        popoverDOM = $(".popover"),
+        boxDOM = $(".box");
+
 
 	burger.on("click",function(){
         $(window).off("scroll")
@@ -464,12 +468,15 @@ $(document).ready(function(){
         resizeWindow()
     }
         $(".send_order").on('click', function(){
-            $(".popover").addClass("visible")
-            $(".box").addClass("show_list")
+            // var popoverDOM = $(".popover");
+            // var boxDOM = $(".box");
+            popoverDOM.addClass("visible")
+            boxDOM.addClass("show_list")
 
+            console.log($(".description textarea"))
             $(".out").on("click", function(){
-                $(".popover").removeClass("visible")
-                $(".box").removeClass("show_list")
+                popoverDOM.removeClass("visible")
+                boxDOM.removeClass("show_list")
                 bodyHtmlDOM.removeClass("not_scroll")
             })
             bodyHtmlDOM.addClass("not_scroll")
@@ -479,6 +486,7 @@ $(document).ready(function(){
                 e.preventDefault()
                 var flag = false;
                 var arr = $("form input");
+                var description = $(".description textarea").val().trim()
                 arr.each(function(i,e){
                     $(e).removeClass("arr")
                 })
@@ -496,7 +504,9 @@ $(document).ready(function(){
                     arr.each(function(i,e){
                         data[$(e).attr("name")] = $(e).val();
                     })
+                    data['description'] = description;
                     var order = {};
+
                     order['header'] = "<h4>Информация заказа</h4><table style='border: 1px solid; text-align: center; border-collapse: collapse;'><tr><th style='border-right: 1px solid;'>Название</th><th>Количетсво</th></tr>"
                     for(var i = 0; i < product.length; ++i){
 
@@ -518,7 +528,7 @@ $(document).ready(function(){
                             "<tr><td style='border-right: 1px solid;'>"+data['name']+"</td><td style='border-right: 1px solid;'>"+data['phone']+"</td><td style='border-right: 1px solid;'>"+data['street']+
                             "</td><td style='border-right: 1px solid;'>"+data['home']+"</td><td style='border-right: 1px solid;'>"+data['port']+
                             "</td><td style='border-right: 1px solid;'>"+data['intercom']+"</td><td style='border-right: 1px solid;'>"+data['flat']+
-                            "</td><td style='border-right: 1px solid;'>"+data['area']+"</td></tr>"
+                            "</td><td style='border-right: 1px solid;'>"+data['description']+"</td></tr>"
 
                   $.ajax({
                     url: "/orderData.php",
@@ -534,8 +544,8 @@ $(document).ready(function(){
                 }
                 product = [];
                 sessionStorage.clear()
-                $(".popover").removeClass("visible")
-                $(".box").removeClass("show_list")
+                popoverDOM.removeClass("visible")
+                boxDOM.removeClass("show_list")
                 bodyHtmlDOM.removeClass("not_scroll")
                 basketDOM.removeClass("visible");
                 orderDOM.text(product.length);

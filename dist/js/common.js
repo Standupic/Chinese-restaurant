@@ -3,36 +3,8 @@ global.jQuery = require("jquery");
 var $ = require("jquery")
 var mask = require("jquery-mask-plugin")
 require("../js/owl.carousel.min");
-// var nodemailer = require('nodemailer');
 
  $(document).ready(function(){
-    // var transporter = nodemailer.createTransport({
-    //     host: "smtp.timeweb.ru",
-    //     port: 2525,
-    //     secure: true,
-    //     auth:{
-    //         user: 'deliver@chinarestro.ru',
-    //         pass: '5827ifyz87'
-    //     }
-
-    // });
-
-    // var mailOptions = {
-    //     from: 'deliver@chinarestro.ru', // sender address
-    //     to: 'formyphp@mail.ru', // list of receivers
-    //     subject: 'Hello ✔', // Subject line
-    //     text: 'Hello world ?', // plain text body
-    //     html: '<b>Hello world ?</b>' // html body
-    // };
-
-    // transporter.sendMail(mailOptions,(error,info) =>{
-    //     if(error){
-    //         console.log(error)
-    //     }
-    //     console.log('Message %s sent: %s', info.messageId, info.response);
-    // });
-
-
     $('#phone').mask('+7'+'(999) 999-9999');
     function checkMQ(){
 		return window.getComputedStyle(document.querySelector(".wrap"), '::before').getPropertyValue('content').replace(/'/g, "").replace(/"/g, "");
@@ -48,7 +20,6 @@ require("../js/owl.carousel.min");
     var $header   = $(".header") 
     var $window    = $(window)
     var h  = $header.outerHeight()
-    // console.log(burger_sidebar)
 
 	burger.on("click",function(){
         $(window).off("scroll")
@@ -119,6 +90,14 @@ require("../js/owl.carousel.min");
       };
     };
     
+    $(".out_img").on('click', function(){
+        $("input[type='checkbox']").each(function(i,e){
+            $(e).prev().css("background","white");
+            $(this).prop("checked",false)
+        })
+        $(this).next().prop("checked",true)
+        $(this).css("background","yellow");
+    })
 
     $("input[type='checkbox']").on("click", function(){
         $("input[type='checkbox']").each(function(i,e){

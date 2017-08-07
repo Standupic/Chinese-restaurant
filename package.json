@@ -48,6 +48,7 @@
     "win-spawn": "^2.0.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
     "browserify": "^14.1.0",
     "handlebars": "^4.0.6",
     "lodash": "^4.17.4",

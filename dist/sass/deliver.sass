@@ -110,12 +110,15 @@ button
 					font-family: RobotoLight
 					font-weight: bold
 					font-size: 1.7em
+					height: 100px
+					@media all and (max-width: 1024px)
+						font-size: 1.4em
 				&:nth-of-type(2)
-					padding-top: 20px
+					// padding-top: 20px
 					font-size: .9em
 					color: #626065
 				span 
-					font-size: 2em
+					font-size: 1.7em
 				em 
 					font-style: normal
 					color: #626065
@@ -127,9 +130,9 @@ button
 				img 
 					width: 100%
 			.caption
-				padding: 20px 30px
+				padding: 15px
 				background-color: white
-				min-height: 400px
+				min-height: 320px
 				display: flex 
 				flex-direction: column
 				justify-content: space-around
@@ -179,7 +182,7 @@ button
 	bottom: 0px
 	background-color: white
 	transition: visibility .7s, opacity .8sm, transform .7s
-	transform: translateY(0px)
+	transform: translateY(50px)
 	box-shadow: 0px 1px 8px rgba(0,0,0,.5)
 	.container
 		@media all and (max-width: 480px)
@@ -253,6 +256,7 @@ button
 					border-top: 1px solid #f53a39
 				.name
 					max-width: 200px
+					width: 200px
 					@media all and (max-width: 480px)
 						max-width: 115px
 						font-size: .8em

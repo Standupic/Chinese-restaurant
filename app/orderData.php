@@ -2,7 +2,7 @@
 	// $data = $_POST;
 	$data = $_POST;
 	var_dump($data);
-	$to = 'formyphp@mail.ru'; //Почта получателя, через запятую можно указать сколько угодно адресов
+	$to = 'formyphp@mail.ru,chinarestro@mail.ru'; //Почта получателя, через запятую можно указать сколько угодно адресов
     $subject = 'Обратный звонок'; //Загаловок сообщения
     $message = "<html><head><title>".$subject."</title></head><body>";
     $message .= "<div>";

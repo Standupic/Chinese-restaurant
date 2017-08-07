@@ -1,0 +1,263 @@
+[
+  {
+    _id: '{{objectId()}}',
+    name: "Утка по-Покински на двоих",
+    price: 980,
+    gramm: 200,
+    ingredient: "Утка",
+    img: "../img/deliver/Utka_po-pekinski2.jpg",
+    dish: "dark"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Утка по-Покински на четверых",
+    price: 1950,
+    gramm: 200,
+    ingredient: "Утка",
+    img: "../img/deliver/Utka_po-pekinski.jpg",
+    dish: "dark"
+  },
+   {
+    _id: '{{objectId()}}',
+    name: "Спринг ролл с овощами или мясо",
+    price: 190,
+    gramm: 350,
+    ingredient: "Овощи или мясо, тесто",
+    img: "../img/deliver/Spring-roll_ovoshi.jpg",
+    dish: "roll"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Спринг ролл с креветками",
+    price: 380,
+    gramm: 350,
+    ingredient: "Креветки, тесто",
+    img: "../img/deliver/Spring-roll_krevetka.jpg",
+    dish: "roll"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Жаренная лепешка с луком",
+    price: 150,
+    gramm: 350,
+    ingredient: "Лук, тесто",
+    img: "../img/deliver/Lepeshka_s_lukom.jpg",
+    dish: "roll"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Салат Бар",
+    price: 290,
+    gramm: 280,
+    ingredient: "Ассорти салатов, маринованных в китайских специях из провинции Сычуань",
+    img: "../img/deliver/Salat_bar.jpg",
+    dish: "salads"
+  },
+   {
+    _id: '{{objectId()}}',
+    name: "Салат из свежих овощей",
+    price: 220,
+    gramm: 210,
+    ingredient: "Огурец, айсберг, помидор, болгарский перец, кунжутное масло",
+    img: "../img/deliver/Sakat_iz_ovoshey.jpg",
+    dish: "salads"
+  },
+   {
+    _id: '{{objectId()}}',
+    name: "Салат из паржи",
+    price: 180,
+    gramm: 150,
+    ingredient: "",
+    img: "../img/deliver/Salat_iz_sparzhi.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Салат из соевых ростков",
+    price: 220,
+    gramm: 150,
+    ingredient: "",
+    img: "../img/deliver/Salat_iz_soevih_rostkov.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Салат из капусты по-Сычуаньски",
+    price: 160,
+    gramm: 200,
+    ingredient: "",
+    img: "../img/deliver/Salat_kapusta_po-sichuanski.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Салат из моркови",
+    price: 160,
+    gramm: 150,
+    ingredient: "",
+    img: "../img/deliver/Salat_iz_morkovi.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Свиное ушко по-Сычуаньски",
+    price: 320,
+    gramm: 180,
+    ingredient: "",
+    img: "../img/deliver/Salat_uwko_po-sichuanski.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Салат из древесных грибов",
+    price: 160,
+    gramm: 150,
+    ingredient: "",
+    img: "../img/deliver/Salat_iz_drevesnih_gribov.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Салат из кальмаров с овощами",
+    price: 480,
+    gramm: 250,
+    ingredient: "Кальмар, болгарский перец, огурец, лук, кинза, перец чили с арахисом",
+    img: "../img/deliver/Salat_kalmari_ovoshi.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Золотые нити",
+    price: 320,
+    gramm: 220,
+    ingredient: "Грибы золотые нити, огурец, болгарский перец, соевый соус, масло чили, уксус, рисовый",
+    img: "../img/deliver/Salat_Gold_niti.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Салат 'Харбин'",
+    price: 380,
+    gramm: 250,
+    ingredient: "Соевая лапша, тофу, огурец, морковь, перец болгарский, чеснок, арахис, кунжутное масло, чили масло",
+    img: "../img/deliver/Salat_Harbin.jpg",
+    dish: "salads"
+  },
+   {
+    _id: '{{objectId()}}',
+    name: "Салат овощной 'Тигр'",
+    price: 360,
+    gramm: 250,
+    ingredient: "Лук, огурец, перец болгарский, стрючковый перец, арахис, кунжутное масло, кинза",
+    img: "../img/deliver/Salat_Tigr.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Салат из Тофу",
+    price: 360,
+    gramm: 200,
+    ingredient: "Тофу, чеснок, чили масло, кунжутное масло, кинза",
+    img: "../img/deliver/Salat_Tofu.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Салат из Битых огурцов",
+    price: 240,
+    gramm: 250,
+    ingredient: "",
+    img: "../img/deliver/Salat_bitie_ogurci.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Салат из говяжьего языка и рубца",
+    price: 480,
+    gramm: 200,
+    ingredient: "Говяжий язык, болгарский перец, чили перец c арахисом, чили масло",
+    img: "../img/deliver/Salat_iz_yazika_i_rubca.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Салат из говяжьего языка",
+    price: 460,
+    gramm: 200,
+    ingredient: "Отварной язык, огурец, морковь, кунжут, чеснок, соевый соус",
+    img: "../img/deliver/Salat_iz_yazika.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Остарый рубец",
+    price: 320,
+    gramm: 180,
+    ingredient: "На выбор: свиной или говяжий рубец, болгарский перец, огурцы, зеленый лук, чили перец",
+    img: "../img/deliver/Salat_ostriy_rubec.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Салат Цезарь с креветками",
+    price: 420,
+    gramm: 260,
+    ingredient: "Тигровые креветки, айсберг, сыр пармезан, гренки, помидоры черри, соус цезарь",
+    img: "../img/deliver/Salat_ceasar_krevetka.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Острая валеная говядина",
+    price: 380,
+    gramm: 180,
+    ingredient: "Перец болгарский, лук, чили с арахисом, кинза, кунжутное масло, чили масло, пять специй",
+    img: "../img/deliver/Salat_ostraya_govyadina.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Cалат Цезарь с курицей",
+    price: 320,
+    gramm: 250,
+    ingredient: "Куриное филе, айсберг, сыр пармезан, гренки, помидоры черри, соус цезарь",
+    img: "../img/deliver/Salat_ceasar_kurica.jpg",
+    dish: "salads"
+  },
+  {
+    _id: '{{objectId()}}',
+    name: "Том ям",
+    price: 360,
+    gramm: 300,
+    ingredient: "Знаменитый азиатский суп, Креветки, кальмары, мидии, кокосовое молоко, грибы, помидоры",
+    img: "../img/deliver/Soup_Tom_Yam.jpg",
+    dish: "soup"
+  },
+   {
+    _id: '{{objectId()}}',
+    name: "Том ям",
+    price: 320,
+    gramm: 300,
+    ingredient: "Аналог супа Том ям с курицей и креветками",
+    img: "../img/deliver/Soup_Tom_Yam.jpg",
+    dish: "soup"
+  },
+   {
+    _id: '{{objectId()}}',
+    name: "Кисло-острый суп",
+    price: 260,
+    gramm: 250,
+    ingredient: "Грибы сяньгу, черные древесные грибы, ростки бамбука, перец болгарский, филе цыпленка, сыр тофу, яйцо, кинза",
+    img: "../img/deliver/Soup_kislo-ostriy.jpg",
+    dish: "soup"
+  },
+   {
+    _id: '{{objectId()}}',
+    name: "Суп куриный с грибами сяньгу",
+    price: 190,
+    gramm: 250,
+    ingredient: "",
+    img: "../img/deliver/Soup_kuriniy_s_gribami.jpg",
+    dish: "soup"
+  },
+]

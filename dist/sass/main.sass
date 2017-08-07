@@ -15,7 +15,7 @@
 	background-repeat: no-repeat
 	background-size: cover
 	background-attachment: fixed
-	@media all and(max-width: 1023px)
+	@media all and(max-width: 1024px)
 		// height: 100%
 		background-attachment: scroll
 	.wrap_paralax
@@ -24,6 +24,7 @@
 			align-items: center
 			justify-content: center
 			height: calc(100vh - 65px) 
+			position: relative
 			.content
 				display: flex
 				flex-direction: column
@@ -32,7 +33,7 @@
 					display: block
 					max-width: 100%
 					max-height: 100%
-					@media all and(max-width: 480px)
+					@media all and(max-width: 1024px)
 						height: 200px
 					@media all and(max-width: 320px)
 						height: 100px
@@ -42,7 +43,9 @@
 					letter-spacing: .5px
 					color: white
 					margin: 20px 0px
-					@media all and(max-width: 480px)
+					@media all and(max-width: 1024px)
+						font-size: 2.5em
+					@media all and(max-width: 500px)
 						font-size: 1.3em
 						margin: 10px 0px
 				p 
@@ -57,6 +60,17 @@
 				button
 					@media all and(max-width: 480px)
 						width: 250px
+
+			.logo_dostavka
+				height: 100px
+				width: 100px 
+				position: absolute
+				top: 0
+				right: 0
+				cursor: pointer
+				@media all and(max-width: 480px)
+					height: 60px
+					width: 60px
 .about
 	background-color: #eeeeee
 	.wrap_about
@@ -252,6 +266,7 @@
 					align-items: center
 					text-align: center
 					margin-right: 25px
+					cursor: pointer
 					@media all and(max-width: 600px)
 						width: 100%
 						margin-right: 0px
@@ -391,6 +406,10 @@
 							width: 15px
 							height: 15px
 							display: inline-block
+		a
+			align-self: center
+			button
+				width: 220px
 #map
 	width: 100%
 	height: 520px
