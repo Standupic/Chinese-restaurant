@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^site\.ru$ [NC]
+RewriteRule ^(.*)$ http://chinarestro.ru/$1 [R=301,L]
+</IfModule>

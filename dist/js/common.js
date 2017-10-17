@@ -3,8 +3,10 @@ global.jQuery = require("jquery");
 var $ = require("jquery")
 var mask = require("jquery-mask-plugin")
 require("../js/owl.carousel.min");
+// var App = require("./component/App");
 
  $(document).ready(function(){
+    
     $('#phone').mask('+7'+'(999) 999-9999');
     function checkMQ(){
 		return window.getComputedStyle(document.querySelector(".wrap"), '::before').getPropertyValue('content').replace(/'/g, "").replace(/"/g, "");
@@ -13,7 +15,7 @@ require("../js/owl.carousel.min");
     var burger_sidebar = $(".body_overlay .krest .burger")
 	var sidemenu = $(".sidemenu");
 	var paralax = $(".paralax");
-    var body = $(".body")
+    var body = $("body")
     var overlay = $(".overlay")
     var overlay_body = $(".body_overlay")
     var wrap = $(".wrap") 

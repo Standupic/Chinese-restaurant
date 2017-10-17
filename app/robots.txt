@@ -1,0 +1,24 @@
+User-agent: *
+
+Disallow: /index.html
+
+Sitemap: http://www.chinarestro.ru/sitemap.xml
+
+
+
+User-agent: Yandex
+
+Disallow: /index.html
+
+Sitemap: http://www.chinarestro.ru/sitemap.xml
+
+Host: www.chinarestro.ru
+
+
+
+User-agent: Googlebot
+
+
+Disallow: /index.html
+
+Sitemap: http://www.chinarestro.ru/sitemap.xml

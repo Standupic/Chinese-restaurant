@@ -27,10 +27,10 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('script',function(){
-  	browserify("dist/js/deliver.js")
+  	browserify("dist/js/component/app.js")
     .transform('babelify', {presets: ["es2015", "react", "stage-0"]})
     .bundle()
-    .pipe(source("deliver.min.js"))
+    .pipe(source("app.min.js"))
     .pipe(bufferr())
 	.pipe(sourcemaps.init({loadMaps: true}))
 	.pipe(uglify({
@@ -80,7 +80,7 @@ gulp.task('watch', function() {
 gulp.task('set-env', function () {
   env({
     vars: {
-      NODE_ENV: "production"
+      NODE_ENV: JSON.stringify('production')
     }
   })
 });

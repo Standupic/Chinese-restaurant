@@ -9,7 +9,7 @@ $(document).ready(function(){
     
     $('#phone').mask('+7'+'(999) 999-9999');
 
-	var body = $(".body"),
+	var body = $("body"),
         overlay = $(".overlay"),
         overlay_body = $(".body_overlay"),
         wrap = $(".wrap"), 
@@ -22,6 +22,7 @@ $(document).ready(function(){
         product = JSON.parse(sessionStorage.getItem("product")) || [],
         total = JSON.parse(sessionStorage.getItem("total")) ||  0,
         current = "",
+        currentMenu = "",
         totalDOM = $('.total'),
         orderDOM = $(".order"),
         orderMobileDOM = $(".mobile .order"),
@@ -413,6 +414,11 @@ $(document).ready(function(){
                 }
             })
             loadDOM(array)
+           //  if(currentMenu == "main"){
+           //     $(".button_active").css("display","none"); 
+           // }else{
+           //     $(".button_active").css("display",""); 
+           // }
         })
     }
 
@@ -420,42 +426,58 @@ $(document).ready(function(){
        var toogle = $(".toogle ul li");
         toogle.on('click',function(){
             var menu = $(this).attr("data-menu");
-            menu == "main" 
-            ? loadDOM(dishes) : console.log("Меню доставки")
+            menu == "deliver" 
+            // ? loadDOM(dishes) : loadDOM(dishes, true)
+            ? loadDOM(dishes) : console.log("Основное меню")
+            currentMenu = menu;
             $(this).siblings().removeClass("active")
             $(this).addClass("active")
         })
         current = "";
     }
 
-    function loadDOM(data){
-        var dishes = {};
-            dishes.dishes = data;
-        var template = handlebars.compile($("#template_dish").html())
-        clearChildren() 
-        $("#dishes").append(template(dishes))
-        var b = [];
-        if(product.length){ // когда уже выбрал товар и ходишь по ассортименту
-            for(var i = 0; i < product.length; ++i){
-               buttonTurnOn("dishes",product[i]._id)
-               $("#dishes"+" ."+product[i]._id+" span").text(product[i]['quantity'])
-               var imgs = $("#dishes img[data-id="+product[i]._id+"]")
-               takeQuanity(imgs)
-               totalDOM.text(total);
-               orderDOM.text(product.length);
-               basketDOM.css("transform","translateY("+product.length*50+"px)")
+    function loadDOM(data,flag){
+        // if(flag){
+        //     var array = []
+        //     $(data).each(function(i,e){
+        //         if(e['deliver']){
+        //             array.push(e)
+        //         }
+        //     })
+        //     // console.log(array)
+        //     var dishes = {};
+        //         dishes.dishes = array;
+        //     var template = handlebars.compile($("#template_dish").html())
+        //     clearChildren() 
+        //     $("#dishes").append(template(dishes))
+        //     $(".button_active").css("display","none");
+        // }else{
+            var dishes = {};
+                dishes.dishes = data;
+            var template = handlebars.compile($("#template_dish").html())
+            clearChildren() 
+            $("#dishes").append(template(dishes))
+            if(product.length){ // когда уже выбрал товар и ходишь по ассортименту
+                for(var i = 0; i < product.length; ++i){
+                   buttonTurnOn("dishes",product[i]._id)
+                   $("#dishes"+" ."+product[i]._id+" span").text(product[i]['quantity'])
+                   var imgs = $("#dishes img[data-id="+product[i]._id+"]")
+                   takeQuanity(imgs)
+                   totalDOM.text(total);
+                   orderDOM.text(product.length);
+                   basketDOM.css("transform","translateY("+product.length*50+"px)")
+                }
             }
-        }
 
-        if($(window).width() < 480){
-            orderMobileDOM.text(product.length)
-            orderMobileDOM.off('click')
-            orderMobileDOM.on("click", function(){
-                  basketDOM.toggleClass("visible, show_list")
-            })
+            if($(window).width() < 480){
+                orderMobileDOM.text(product.length)
+                orderMobileDOM.off('click')
+                orderMobileDOM.on("click", function(){
+                      basketDOM.toggleClass("visible, show_list")
+                })
+            }
+            basket(data)
         }
-        basket(data)
-    }
  
     function loadLIST(data){
         var list = {}
@@ -467,23 +489,22 @@ $(document).ready(function(){
         takeQuanity($("#list .item ul li img"))
         resizeWindow()
     }
+        
         $(".send_order").on('click', function(){
-            // var popoverDOM = $(".popover");
-            // var boxDOM = $(".box");
+
             popoverDOM.addClass("visible")
             boxDOM.addClass("show_list")
 
-            console.log($(".description textarea"))
             $(".out").on("click", function(){
                 popoverDOM.removeClass("visible")
                 boxDOM.removeClass("show_list")
                 bodyHtmlDOM.removeClass("not_scroll")
             })
+
             bodyHtmlDOM.addClass("not_scroll")
 
-            var array = []
-            $("#form").submit(function(e){
-                e.preventDefault()
+            $("#form").on("submit", function(e){
+                e.preventDefault();
                 var flag = false;
                 var arr = $("form input");
                 var description = $(".description textarea").val().trim()
@@ -535,14 +556,16 @@ $(document).ready(function(){
                     type: "POST",
                     data: order,
                     success: function(res){
-                        console.log(res)
+                        // console.log(res)
                     }
                  })
 
                 for(var x = 0; x < product.length; ++x){
                     buttonTurnOff("dishes",product[x]["_id"])
                 }
+                $("#form").off("submit")
                 product = [];
+                total = 0
                 sessionStorage.clear()
                 popoverDOM.removeClass("visible")
                 boxDOM.removeClass("show_list")

@@ -6,7 +6,9 @@
     "gramm": 200,
     "ingredient": "Утка",
     "img": "../img/deliver/Utka_po-pekinski2.jpg",
-    "dish": "dark"
+    "dish": "dark",
+    "rus": "Утка",
+    "deliver": true
   },
   {
     "_id": "59875b4b5c1d4f657150ed04",
@@ -15,7 +17,8 @@
     "gramm": 200,
     "ingredient": "Утка",
     "img": "../img/deliver/Utka_po-pekinski.jpg",
-    "dish": "dark"
+    "dish": "dark",
+    "deliver": true
   },
   {
     "_id": "59875b4b54ef47d186efab64",
@@ -622,7 +625,7 @@
   },
   {
     "_id": "59875b4b69a515d259dbf961",
-    "name": "Жареный рис с курицами",
+    "name": "Жареный рис с курицей",
     "price": 240,
     "gramm": 300,
     "ingredient": "Куриное филе, болгарский перец, лук, яйцо",
